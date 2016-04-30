@@ -1,0 +1,8 @@
+ToggleGarageIntent to {open|OpenClose} garage
+ToggleGarageIntent to {open|OpenClose} the garage
+ToggleGarageIntent to {open|OpenClose} garage door
+ToggleGarageIntent to {open|OpenClose} the garage door
+ToggleGarageIntent to {close|OpenClose} garage
+ToggleGarageIntent to {close|OpenClose} the garage
+ToggleGarageIntent to {close|OpenClose} garage door
+ToggleGarageIntent to {close|OpenClose} the garage door
