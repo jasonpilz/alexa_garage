@@ -12,8 +12,8 @@ void loop() {}
 
 int garageButtonPush(String command) {
     if(command == "open") {
-      
-      // Push button for half second (Close contacts) using optocoupler
+
+      // Push button for 3/4 second (Close contacts) using optocoupler
       digitalWrite(garagePin, HIGH);
       delay(750);
 
