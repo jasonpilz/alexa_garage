@@ -1,0 +1,16 @@
+{
+  "intents": [
+    {
+      "intent": "ToggleGarageIntent",
+      "slots": [
+        {
+          "name": "OpenClose",
+          "type": "LITERAL"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+  ]
+}
