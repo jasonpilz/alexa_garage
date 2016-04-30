@@ -10,31 +10,36 @@ var accessToken = undefined;
 var hostUrl     = "api.particle.io";
 var deviceUrl   = "/v1/devices";
 
-// Particle is a child of AlexaSkill
-let Particle = () => {
+// Garage is a child of AlexaSkill
+let Garage = () => {
   AlexaSkill.call(this, APP_ID);
 };
 
 // Extend AlexaSkill
-Particle.prototype = Object.create(AlexaSkill.prototype);
-Particle.prototype.constructor = Particle;
+Garage.prototype = Object.create(AlexaSkill.prototype);
+Garage.prototype.constructor = Garage;
 
 // Handle Events
-Particle.prototype.eventHandlers.onSessionStarted = (sessionStartedRequest, session) => {
-  console.log(`Particle onSessionStarted requestId: ${sessionStartedRequest.requestId}
+Garage.prototype.eventHandlers.onSessionStarted = (sessionStartedRequest, session) => {
+  console.log(`Garage onSessionStarted requestId: ${sessionStartedRequest.requestId}
                                          sessionId: ${session.sessionId}`);
 };
 
-Particle.prototype.eventHandlers.onLaunch = (launchRequest, session, response) => {
-  console.log(`Particle onLaunch requestId: ${launchRequest.requestId}
-                                 sessionId: ${session.sessionId}`);
+Garage.prototype.eventHandlers.onLaunch = (launchRequest, session, response) => {
+  console.log(`Garage onLaunch requestId: ${launchRequest.requestId}
+                               sessionId: ${session.sessionId}`);
 
   let welcomeMessage = `Welcome to Garage.
                         You can tell me to open or close the garage door.`;
   response.ask(welcomeMessage);
 };
 
-Particle.prototype.eventHandlers.onSessionEnded = (sessionEndedRequest, session) => {
-  console.log(`Particle onSessionEnded requestId: ${sessionEndedRequest.requestId}
-                                       sessionId: ${session.sessionId}`);
+Garage.prototype.eventHandlers.onSessionEnded = (sessionEndedRequest, session) => {
+  console.log(`Garage onSessionEnded requestId: ${sessionEndedRequest.requestId}
+                                     sessionId: ${session.sessionId}`);
+};
+
+// Handle intents
+Garage.prototype.intentHandlers = {
+
 };
