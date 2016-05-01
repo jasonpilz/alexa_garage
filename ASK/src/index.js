@@ -1,14 +1,13 @@
 'use strict';
 
-const https      = require('https');
-const AlexaSkill = require('./AlexaSkill');
+const https       = require('https');
+const AlexaSkill  = require('./AlexaSkill');
 
-var APP_ID      = undefined;
-var deviceId    = undefined;
-var accessToken = undefined;
-
-var hostUrl     = 'api.particle.io';
-var deviceUrl   = '/v1/devices';
+const APP_ID      = undefined;
+const deviceId    = undefined;
+const accessToken = undefined;
+const hostUrl     = 'api.particle.io';
+const deviceUrl   = '/v1/devices';
 
 // Garage is a child of AlexaSkill
 let Garage = () => {
@@ -29,8 +28,8 @@ Garage.prototype.eventHandlers.onLaunch = (launchRequest, session, response) => 
   console.log(`Garage onLaunch requestId: ${launchRequest.requestId}
                                sessionId: ${session.sessionId}`);
 
-  let welcomeMessage = `Welcome to Garage.
-                        You can tell me to open or close the garage door.`;
+  const welcomeMessage = `Welcome to Garage.
+                          You can tell me to open or close the garage door.`;
   response.ask(welcomeMessage);
 };
 
@@ -110,6 +109,6 @@ function makeRequest(options, callback) {
 exports.handler = (event, context) => {
 
     // Create an instance of the Particle skill
-    let garageSkill = new Garage();
+    const garageSkill = new Garage();
     garageSkill.execute(event, context);
 };
