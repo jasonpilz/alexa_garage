@@ -4,7 +4,7 @@ const https       = require('https');
 const AlexaSkill  = require('./AlexaSkill');
 
 // ********** Replace these 3 constants with your actual values ********** //
-const APP_ID      = 'amzn1.echo-sdk-ams.app.[your-unique-value-here]';     // AWS lambda application ID
+const APP_ID      = 'amzn1.echo-sdk-ams.app.[your-unique-value-here]';     // Alexa skill application ID
 const deviceId    = '/6c00362363450003473433131';                          // Particle device ID
 const accessToken = '4837487asdfadsfkasdfq88808adsf098080casegveuoiow748'; // Particle API access token
 
