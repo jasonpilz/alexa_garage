@@ -1,3 +1,4 @@
+
 /**
 Copyright 2014-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
@@ -17,15 +18,15 @@ AlexaSkill.speechOutputType = {
 };
 
 AlexaSkill.prototype.requestHandlers = {
-  LaunchRequest: (event, context, response) => {
+  LaunchRequest: function (event, context, response) {
     this.eventHandlers.onLaunch.call(this, event.request, event.session, response);
   },
 
-  IntentRequest: (event, context, response) => {
+  IntentRequest: function (event, context, response) {
     this.eventHandlers.onIntent.call(this, event.request, event.session, response);
   },
 
-  SessionEndedRequest: (event, context) => {
+  SessionEndedRequest: function (event, context) {
     this.eventHandlers.onSessionEnded(event.request, event.session);
     context.succeed();
   }
@@ -39,29 +40,29 @@ AlexaSkill.prototype.eventHandlers = {
   * Called when the session starts.
   * Subclasses could have overriden this function to open any necessary resources.
   */
-  onSessionStarted: (sessionStartedRequest, session) => {
+  onSessionStarted: function (sessionStartedRequest, session) {
   },
 
   /**
   * Called when the user invokes the skill without specifying what they want.
   * The subclass must override this function and provide feedback to the user.
   */
-  onLaunch: (launchRequest, session, response) => {
+  onLaunch: function (launchRequest, session, response) {
     throw "onLaunch should be overriden by subclass";
   },
 
   /**
   * Called when the user specifies an intent.
   */
-  onIntent: (intentRequest, session, response) => {
-    let intent = intentRequest.intent,
+  onIntent: function (intentRequest, session, response) {
+    var intent = intentRequest.intent,
     intentName = intentRequest.intent.name,
     intentHandler = this.intentHandlers[intentName];
     if (intentHandler) {
-      console.log(`dispatch intent = ${intentName}`);
+      console.log('dispatch intent = ' + intentName);
       intentHandler.call(this, intent, session, response);
     } else {
-      throw `Unsupported intent = ${intentName}`;
+      throw 'Unsupported intent = ' + intentName;
     }
   },
 
@@ -69,7 +70,7 @@ AlexaSkill.prototype.eventHandlers = {
   * Called when the user ends the session.
   * Subclasses could have overriden this function to close any open resources.
   */
-  onSessionEnded: (sessionEndedRequest, session) => {
+  onSessionEnded: function (sessionEndedRequest, session) {
   }
 };
 
@@ -78,14 +79,13 @@ AlexaSkill.prototype.eventHandlers = {
 */
 AlexaSkill.prototype.intentHandlers = {};
 
-AlexaSkill.prototype.execute = (event, context) => {
+AlexaSkill.prototype.execute = function (event, context) {
   try {
-    console.log(`session applicationId: ${event.session.application.applicationId}`);
+    console.log("session applicationId: " + event.session.application.applicationId);
 
     // Validate that this request originated from authorized source.
     if (this._appId && event.session.application.applicationId !== this._appId) {
-      console.log(`The applicationIds don't match :
-                   ${event.session.application.applicationId} and ${this._appId}`);
+      console.log("The applicationIds don't match : " + event.session.application.applicationId + "and " + this._appId);
       throw "Invalid applicationId";
     }
 
@@ -98,15 +98,15 @@ AlexaSkill.prototype.execute = (event, context) => {
     }
 
     // Route the request to the proper handler which may have been overriden.
-    let requestHandler = this.requestHandlers[event.request.type];
+    var requestHandler = this.requestHandlers[event.request.type];
     requestHandler.call(this, event, context, new Response(context, event.session));
   } catch (e) {
-    console.log(`Unexpected exception ${e}`);
+    console.log("Unexpected exception " + e);
     context.fail(e);
   }
 };
 
-let Response = (context, session) => {
+var Response = function (context, session) {
   this._context = context;
   this._session = session;
 };
@@ -125,8 +125,8 @@ function createSpeechObject(optionsParam) {
   }
 }
 
-Response.prototype = (() => {
-  var buildSpeechletResponse = (options) => {
+Response.prototype = (function () {
+  var buildSpeechletResponse = function (options) {
     var alexaResponse = {
       outputSpeech: createSpeechObject(options.output),
       shouldEndSession: options.shouldEndSession
@@ -154,14 +154,14 @@ Response.prototype = (() => {
   };
 
   return {
-    tell: (speechOutput) => {
+    tell: function (speechOutput) {
       this._context.succeed(buildSpeechletResponse({
         session: this._session,
         output: speechOutput,
         shouldEndSession: true
       }));
     },
-    tellWithCard: (speechOutput, cardTitle, cardContent) => {
+    tellWithCard: function (speechOutput, cardTitle, cardContent) {
       this._context.succeed(buildSpeechletResponse({
         session: this._session,
         output: speechOutput,
@@ -170,7 +170,7 @@ Response.prototype = (() => {
         shouldEndSession: true
       }));
     },
-    ask: (speechOutput, repromptSpeech) => {
+    ask: function (speechOutput, repromptSpeech) {
       this._context.succeed(buildSpeechletResponse({
         session: this._session,
         output: speechOutput,
@@ -178,7 +178,7 @@ Response.prototype = (() => {
         shouldEndSession: false
       }));
     },
-    askWithCard: (speechOutput, repromptSpeech, cardTitle, cardContent) => {
+    askWithCard: function (speechOutput, repromptSpeech, cardTitle, cardContent) {
       this._context.succeed(buildSpeechletResponse({
         session: this._session,
         output: speechOutput,

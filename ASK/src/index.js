@@ -3,14 +3,16 @@
 const https       = require('https');
 const AlexaSkill  = require('./AlexaSkill');
 
-const APP_ID      = undefined;
-const deviceId    = undefined;
-const accessToken = undefined;
+// ********** Replace these 3 constants with your actual values ********** //
+const APP_ID      = 'amzn1.echo-sdk-ams.app.[your-unique-value-here]';     // AWS lambda application ID
+const deviceId    = '/6c00362363450003473433131';                          // Particle device ID
+const accessToken = '4837487asdfadsfkasdfq88808adsf098080casegveuoiow748'; // Particle API access token
+
 const hostUrl     = 'api.particle.io';
 const deviceUrl   = '/v1/devices';
 
 // Garage is a child of AlexaSkill
-let Garage = () => {
+let Garage = function() {
   AlexaSkill.call(this, APP_ID);
 };
 
@@ -38,14 +40,14 @@ Garage.prototype.eventHandlers.onSessionEnded = (sessionEndedRequest, session) =
                                      sessionId: ${session.sessionId}`);
 };
 
-// Handle intents
+// Handle Intents
 Garage.prototype.intentHandlers = {
   ToggleGarageIntent: (intent, session, response) => {
-    let OpenCloseSlot    = intent.slots.OpenClose;
+    let openCloseSlot    = intent.slots.OpenClose;
     let ToggleGaragePath = `${deviceUrl}${deviceId}/garage`;
 
-    if (OpenCloseSlot && OpenCloseSlot.value) {
-      if (OpenCloseSlot == 'open' || OpenCloseSlot == 'close') {
+    if (openCloseSlot && openCloseSlot.value) {
+      if (openCloseSlot.value == 'open' || openCloseSlot.value == 'close') {
 
         callParticleApi(ToggleGaragePath, (apiResponse) => {
           let parsedResponse = JSON.parse(apiResponse);
@@ -64,7 +66,7 @@ Garage.prototype.intentHandlers = {
     }
   },
 
-  'AMAZON.HelpIntent': (intent, session, response) => {
+  "AMAZON.HelpIntent": (intent, session, response) => {
     response.ask('You can tell me to open or close the garage door');
   }
 };
