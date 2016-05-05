@@ -18,7 +18,7 @@ Particle Build.
 
 2. [Alexa Skill](https://github.com/jasonpilz/alexa_garage/tree/master/ASK/src) - Written in Node.js (version 4.3) and hosted as a function on [AWS Lambda](https://aws.amazon.com/lambda/).
 
-3. iOS Application
+3. [iOS Application](https://github.com/jasonpilz/alexa_garage/tree/master/iOS/AlexaGarage) - Very basic iOS app with 1 button that will trigger the door. Written in Swift and installed on your iOS device.
 
 ## Interaction Model
 
@@ -33,7 +33,7 @@ Interaction with Alexa can be made with the [following commands](https://github.
 **Close the garage door**
 >"Alexa, tell garage door to close."
 
-## Setup
+## Alexa Skill Setup
 #### AWS Lambda Setup
 
 1. Go to the [AWS Console](https://console.aws.amazon.com) and click on the Lambda link. Note: ensure you are in us-east (N. Virginia) or you won't be able to use Alexa with Lambda.
@@ -63,6 +63,10 @@ then update the lambda source zip file with this change and upload to lambda aga
 8. You are now able to start testing your sample skill! You should be able to go to the [Echo webpage](http://echo.amazon.com/#skills) and see your skill enabled.
 9. In order to test it, try to say some of the Sample Utterances from the Examples section below.
 10. Your skill is now saved and once you are finished testing you can continue to publish your skill.
+
+## iOS App Setup
+
+[WIP]
 
 ## Hardware
 
