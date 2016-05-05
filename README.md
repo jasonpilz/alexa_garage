@@ -1,14 +1,24 @@
 # Alexa Garage
 
 ## Overview
-Internet and Voice control for my garage door opener using AWS Lambda, Amazon Echo, and Particle Photon
+Internet, Voice and iOS control for my garage door opener using AWS Lambda, Amazon Echo, and Particle Photon.
 
-There are 2 main parts to this project:
+There are 3 parts to this project. Number 1 is the hardware and firmware required to interface with the garage controller.
+Obviously this is required to make it work. Number 2 and 3 are different ways to control that hardware, and can be
+used independently. The iOS app is not dependant on the Alexa Skill, neither is the Alexa Skill dependant on the iOS app.
+They both use the same method of triggering the hardware/firmware - the Particle Cloud API. The firmware on the photon exposes
+a cloud function - `garage`. In order to run the code in this function, you can send the corresponding REST API call as outlined
+in the [Particle Docs](https://docs.particle.io/reference/api/) to hit this custom API endpoint and trigger our custom `garage`
+function exposed in the firmware. This then will electronically close the switch contacts of the garage door button - Opening and
+closing it.
+
 
 1. [Photon Firmware](https://github.com/jasonpilz/alexa_garage/blob/master/firmware/garage_button.ino) - Written in C and uploaded to the photon using Particle Dev or
 Particle Build.
 
 2. [Alexa Skill](https://github.com/jasonpilz/alexa_garage/tree/master/ASK/src) - Written in Node.js (version 4.3) and hosted as a function on [AWS Lambda](https://aws.amazon.com/lambda/).
+
+3. iOS Application
 
 ## Interaction Model
 
