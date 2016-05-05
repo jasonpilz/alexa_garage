@@ -34,7 +34,9 @@ class ViewController: UIViewController {
         request.HTTPBody   = data.dataUsingEncoding(NSUTF8StringEncoding)
         
         // Create the connection and fire the request
-        _ = NSURLConnection(request: request, delegate: self, startImmediately: true)
+        _ = NSURLConnection(request: request,
+                            delegate: self,
+                            startImmediately: true)
     }
 
 }
