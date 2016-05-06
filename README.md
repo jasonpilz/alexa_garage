@@ -69,8 +69,19 @@ then update the lambda source zip file with this change and upload to lambda aga
 [WIP]
 
 ## Hardware
-
 [WIP]
+
+### Parts List
+
+* Particle Photon (x1)
+* Optocoupler (x1)
+* 220 ohm resistor (x1)
+* [Optional] Sparkfun Protoshield (x1)
+* [Optional] Voltage regulator (x1, 5V, if powering photon from VIN pin)
+
+### Description
+
+### Diagram
 <!-- ![Fritzing](./images/.png) -->
 
 
