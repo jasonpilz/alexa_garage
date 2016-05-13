@@ -5,7 +5,7 @@ Internet, Voice and iOS control for my garage door opener using AWS Lambda, Amaz
 
 There are 3 parts to this project. Number 1 is the hardware and firmware required to interface with the garage controller.
 Obviously this is required to make it work. Number 2 and 3 are different ways to control that hardware, and can be
-used independently. The iOS app is not dependant on the Alexa Skill, neither is the Alexa Skill dependant on the iOS app.
+used independently. The iOS app is not dependent on the Alexa Skill, neither is the Alexa Skill dependent on the iOS app.
 They both use the same method of triggering the hardware/firmware - the Particle Cloud API. The firmware on the photon exposes
 a cloud function - `garage`. In order to run the code in this function, you can send the corresponding REST API call as outlined
 in the [Particle Docs](https://docs.particle.io/reference/api/) to hit this custom API endpoint and trigger our custom `garage`
@@ -65,7 +65,6 @@ then update the lambda source zip file with this change and upload to lambda aga
 10. Your skill is now saved and once you are finished testing you can continue to publish your skill.
 
 ## iOS App Setup
-
 [WIP]
 
 ## Hardware
