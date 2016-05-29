@@ -84,7 +84,7 @@ then update the lambda source zip file with this change and upload to lambda aga
 <!-- ![Fritzing](./images/.png) -->
 
 ### Pics
-<img src ="./images/Completed.jpg" alt="Completed" style="width: 300px;"/>
+<img src ="./images/Completed.jpg" alt="Completed" style="height: 300px;"/>
 
 ## Amazon Resource Links
 * [Getting Started](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/getting-started-guide)
