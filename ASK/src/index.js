@@ -65,7 +65,29 @@ Garage.prototype.intentHandlers = {
       }
     }
   },
+  ToggleStatusIntent: (intent, session, response) => {
+    let sensorReadSlot    = intent.slots.SensorRead;
+    let ToggleStatusPath = `${deviceUrl}${deviceId}/status`;
 
+    if (openCloseSlot && openCloseSlot.value) {
+      if (SensorReadSlot.value == 'status') {
+
+        callParticleApi(ToggleStatusPath, (apiResponse) => {
+          let parsedResponse = JSON.parse(apiResponse);
+          let speechOutput = '';
+
+          if (parsedResponse.return_value == 1) {
+            speechOutput = 'The Garage is currently open';
+          } else if (parsedResponse.return_value == -1) {
+            speechOutput = 'The Garage is currently closed';
+          }
+          response.tellWithCard(speechOutput, 'Garage');
+        });
+      } else {
+        handleNoSlotDialogRequest(intent, session, response);
+      }
+    }
+  },
   "AMAZON.HelpIntent": (intent, session, response) => {
     response.ask('You can tell me to open or close the garage door');
   }
