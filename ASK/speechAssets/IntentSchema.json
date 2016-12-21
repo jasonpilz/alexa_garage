@@ -5,7 +5,16 @@
       "slots": [
         {
           "name": "OpenClose",
-          "type": "LITERAL"
+          "type": "Open_CLOSE"
+        }
+      ]
+    },
+	{
+      "intent": "ToggleStatusIntent",
+      "slots": [
+        {
+          "name": "SensorRead",
+          "type": "Status_LIST"
         }
       ]
     },
